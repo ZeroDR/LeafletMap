@@ -21,6 +21,11 @@ const routes: Array<RouteRecordRaw> = [
         component: () => import( '@/views/dataCenter/index.vue'),
         children:[
           {
+            path: '/dataCenter/home',
+            name: 'Home', 
+            component: () => import( '@/views/dataCenter/components/Home/index.vue'),
+          },
+          {
             path: '/dataCenter/RoadLine',
             name: 'RoadLine', 
             component: () => import( '@/views/dataCenter/components/RoadLine/index.vue'),

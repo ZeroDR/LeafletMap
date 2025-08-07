@@ -18,7 +18,7 @@ onMounted(()=>{
         class="el-menu-vertical-self"
         @open="handleOpen"
         @close="handleClose">
-        <el-menu-item index="">
+        <el-menu-item index="/dataCenter/home">
           <i class="el-icon-menu" v-if="false"></i>
           <span>首页</span>
         </el-menu-item>
