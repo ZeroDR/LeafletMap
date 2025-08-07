@@ -1,61 +1,6 @@
 <template>
   <div class="mainHeader">
-    <div class="left">
-      <div class="date">
-        <span>{{ headerday }}</span><span>{{ headertime }}</span><br/><span>{{ headerdate }}</span>  
-      </div>
-      <div class="left-menu">
-        <el-menu 
-          :default-active="activePath" 
-          :ellipsis="false"
-          :router="true"
-          class="el-menu-demo" 
-          mode="horizontal" 
-          @select="handleSelect"
-          background-color="transparent"
-          text-color="#30FCFE"
-          active-text-color="#30FCFE"
-        >
-          <el-menu-item index="/">首页</el-menu-item>
-          <el-sub-menu index="2" popper-class="custom-menu-style">
-            <template #title>标题2</template>
-            <el-menu-item index="/data">标题2-1</el-menu-item>
-          </el-sub-menu>
-          <el-sub-menu index="3" popper-class="custom-menu-style">
-            <template #title>标题3</template>
-            <el-menu-item index="3-1">标题3-1</el-menu-item>
-            <el-menu-item index="3-2">标题3-2</el-menu-item>
-          </el-sub-menu>
-        </el-menu>
-      </div>
-    </div>
-    <div class="center">Title</div>
-    <div class="right">
-      <div class="right-menu">
-        <el-menu 
-          :default-active="activePath" 
-          :ellipsis="false"
-          :router="true"
-          class="el-menu-demo" 
-          mode="horizontal" 
-          @select="handleSelect"
-          background-color="transparent"
-          text-color="#30FCFE"
-          active-text-color="#30FCFE"
-        >
-          <el-menu-item index="/">首页</el-menu-item>
-          <el-sub-menu index="2" popper-class="custom-menu-style">
-            <template #title>标题2</template>
-            <el-menu-item index="/data">标题2-1</el-menu-item>
-          </el-sub-menu>
-          <el-sub-menu index="3" popper-class="custom-menu-style">
-            <template #title>标题3</template>
-            <el-menu-item index="3-1">标题3-1</el-menu-item>
-            <el-menu-item index="3-2">标题3-2</el-menu-item>
-          </el-sub-menu>
-        </el-menu>
-      </div>
-    </div>
+    123
   </div>
 </template>
 
@@ -85,7 +30,8 @@
   height: 86px;
   padding: 0 20px;
   box-sizing: border-box;
-  background: url('/assets/images/header_bg2.png') no-repeat center center;
+  background-color:#09292d;
+  // background: url('/assets/images/header_bg2.png') no-repeat center center;
   background-size: 100% 100%;
   color: #fff;
   display: flex;

@@ -14,21 +14,31 @@ const init = () => {
 
 onMounted(()=>{
   init();
+  console.log(L.markerClusterGroup)
 });
 </script>
 
 <template>
-  <div class="map-panel" id="map">
+  <div class="content-view">
+    <div class="map-panel" id="map">
+    </div>
   </div>
 </template>
 
-<style scoped>
-  .map-panel{
+<style lang="scss" scoped>
+  .content-view{
     width:100vw;
     height:100vh;
     margin:0;
     padding:0;
     overflow: hidden;
-    filter: invert(1) hue-rotate(180deg);
+    .map-panel{
+      width:100vw;
+      height:100vh;
+      margin:0;
+      padding:0;
+      overflow: hidden;
+      filter: invert(1) hue-rotate(180deg);
+    }
   }
 </style>

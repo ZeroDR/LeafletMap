@@ -1,11 +1,39 @@
 import { createRouter, createWebHashHistory, RouteRecordRaw } from 'vue-router'
+import Login from '@/views/login.vue'
+import Layout from '@/views/layout.vue'
+import MapView from '@/views/mapView/index.vue'
+
 
 const routes: Array<RouteRecordRaw> = [
   {
     path: '/',
-    name: 'Index',
-    component: () => import('../views/layout.vue')
-  }
+    name: 'login',
+    component: Login
+  },
+  {
+    path: '/layout',
+    name: 'layout',
+    component: Layout,
+    children:[
+      {
+        path: '/dataCenter',
+        name: 'dataCenter', 
+        component: () => import( '@/views/dataCenter/index.vue'),
+        children:[
+          {
+            path: '/dataCenter/AlarmRecord',
+            name: 'AlarmRecord', 
+            component: () => import( '@/views/dataCenter/components/AlarmRecord/index.vue'),
+          },
+        ]
+      },
+      {
+        path:'/mapview',
+        name:'mapview',
+        component:MapView,
+      }
+    ]
+  },
 ]
 
 const router = createRouter({

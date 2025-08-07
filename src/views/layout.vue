@@ -1,7 +1,13 @@
 <script setup lang="ts">
-import { ref,toRow,onMounted,createApp } from 'vue'
+import { ref,toRow,onMounted,watch } from 'vue'
+import { useRoute } from 'vue-router';
 import Header from '@/components/Header.vue'
-import MapView from '@/components/map/MapView.vue'
+import HeaderMap from '@/components/HeaderMap.vue'
+
+const route = useRoute();
+watch(() => route.path, (newPath, oldPath) => {
+  console.log('路由路径从' + oldPath + '变为' + newPath);
+});
 
 onMounted(()=>{
 });
@@ -9,8 +15,9 @@ onMounted(()=>{
 
 <template>
   <div class="content">
-    <Header></Header>
-    <MapView></MapView>
+    <Header v-if="route.path.includes('dataCenter')"></Header>
+    <HeaderMap v-else></HeaderMap>
+    <router-view />
   </div>
 </template>
 
