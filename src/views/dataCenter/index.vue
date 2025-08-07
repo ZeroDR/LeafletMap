@@ -1,44 +1,49 @@
 <script setup lang="ts">
 import { ref,toRow,onMounted,createApp } from 'vue'
 const defaultActive = ref('/dataCenter/AlarmRecord');
-const menuIds = ref([1])
-const menusConfig = ref([{
-    id:1,
-    index:'/dataCenter/AlarmRecord',
-    hasSubMenu:false,
-    title:'报警记录',
-  },
-])
 
 const handleOpen = ()=>{}
 const handleClose = ()=>{}
 
 onMounted(()=>{
-  console.log(menusConfig.value)
 })
 </script>
 <template>
   <div class="page-content">
     <div class="left-menus">
-      <div class="menus-title"><span>巡林管理</span></div>
+      <div class="menus-title"><span></span></div>
       <el-menu
         :router="true"
         :default-active="defaultActive"
         class="el-menu-vertical-self"
         @open="handleOpen"
         @close="handleClose">
+        <el-menu-item index="">
+          <i class="el-icon-menu" v-if="false"></i>
+          <span>首页</span>
+        </el-menu-item>
         <el-sub-menu>
           <template #title>
             <i class="el-icon-location" v-if="false"></i>
-            <span>6666</span>
+            <span>公路资产信息</span>
           </template>
-          <el-menu-item-group>
-            <el-menu-item index="/">1-1</el-menu-item>
-          </el-menu-item-group>
+          <el-sub-menu>
+            <template #title>基本设施</template>
+            <el-menu-item index="/dataCenter/RoadLine">路线管理</el-menu-item>
+            <el-menu-item index="">路段管理</el-menu-item>
+            <el-menu-item index="">桥梁管理</el-menu-item>
+            <el-menu-item index="">隧道管理</el-menu-item>
+            <el-menu-item index="">涵洞管理</el-menu-item>
+            <el-menu-item index="">通道管理</el-menu-item>
+          </el-sub-menu>
         </el-sub-menu>
-        <el-menu-item index="/dataCenter/AlarmRecord">
+        <el-menu-item index="">
           <i class="el-icon-menu" v-if="false"></i>
-          <span>123</span>
+          <span>养护业务管理</span>
+        </el-menu-item>
+        <el-menu-item index="">
+          <i class="el-icon-menu" v-if="false"></i>
+          <span>系统管理</span>
         </el-menu-item>
       </el-menu>
     </div>

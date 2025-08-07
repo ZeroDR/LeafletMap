@@ -21,15 +21,15 @@ const routes: Array<RouteRecordRaw> = [
         component: () => import( '@/views/dataCenter/index.vue'),
         children:[
           {
-            path: '/dataCenter/AlarmRecord',
-            name: 'AlarmRecord', 
-            component: () => import( '@/views/dataCenter/components/AlarmRecord/index.vue'),
+            path: '/dataCenter/RoadLine',
+            name: 'RoadLine', 
+            component: () => import( '@/views/dataCenter/components/RoadLine/index.vue'),
           },
         ]
       },
       {
         path:'/mapview',
-        name:'mapview',
+        name:'MapView',
         component:MapView,
       }
     ]

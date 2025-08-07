@@ -22,7 +22,7 @@ const handleLogin=()=>{
       username: loginForm.value.username,
       password: loginForm.value.password,
     }
-    router.push({ name: 'AlarmRecord' });
+    router.push({ name: 'RoadLine' });
   })
 }
 
