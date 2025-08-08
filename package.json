@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "amfe-flexible": "^2.2.1",
+    "echarts": "^6.0.0",
     "element-plus": "^2.10.5",
     "leaflet": "^1.9.4",
     "postcss-pxtorem": "^6.1.0",

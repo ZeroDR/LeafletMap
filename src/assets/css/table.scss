@@ -121,3 +121,7 @@
 .el-dialog__title{
   color:#333;
 }
+
+.el-table--enable-row-transition .el-table__body td.el-table__cell{
+  z-index: unset;
+}

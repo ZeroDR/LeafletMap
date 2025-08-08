@@ -8,6 +8,9 @@ onMounted(()=>{
 
 <template>
   <div class="right-content">
+    <div class="echart1"></div>
+    <div class="echart2"></div>
+    <div class="echart3"></div>
   </div>
 </template>
 
