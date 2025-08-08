@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { ref,toRow,onMounted,createApp } from 'vue'
 import TablePanel from './TablePanel.vue';
+import EChartDialog from './EChartDialog.vue';
 
 const checkAll = ref(true)
 const isIndeterminate = ref(false)
@@ -26,8 +27,17 @@ const handleCheckedLegendChange = (value: CheckboxValueType[]) => {
 }
 
 const tablePanelRef = ref()
+const echartDialogRef = ref()
 const openDialog = (type)=>{
-  tablePanelRef.value.open()
+  switch(type){
+    case 1:
+    tablePanelRef.value.open()
+    break;
+    case 2:
+    echartDialogRef.value.open()
+    break; 
+  }
+
 }
 
 const closeEvent = ()=>{
@@ -89,6 +99,7 @@ onMounted(()=>{
     </div>
   </div>
   <TablePanel ref="tablePanelRef" @closeEvent="closeEvent"></TablePanel>
+  <EChartDialog ref="echartDialogRef" @closeEvent="closeEvent"></EChartDialog>
 </template>
 
 <style lang="scss" scoped>

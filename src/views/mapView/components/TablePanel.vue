@@ -128,13 +128,15 @@ defineExpose({open})
     z-index: 9999;
     .tabel-header{
       height:80px;
+      background: linear-gradient(0deg, #192B3D 0%, #13385C 100%);
     }
     .close{
       position: absolute;
       right:10px;
       top:10px;
-      width: 16px;
-      height: 16px;
+      width: 24px;
+      height: 24px;
+      color:#fff;
     }
     .list-panel{
       padding:10px 20px;
