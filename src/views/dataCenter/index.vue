@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref,toRow,onMounted,createApp } from 'vue'
-const defaultActive = ref('/dataCenter/AlarmRecord');
+const defaultActive = ref('/dataCenter/home');
 
 const handleOpen = ()=>{}
 const handleClose = ()=>{}
@@ -27,20 +27,21 @@ onMounted(()=>{
             <i class="el-icon-location" v-if="false"></i>
             <span>公路资产信息</span>
           </template>
-          <el-sub-menu>
-            <template #title>基本设施</template>
-            <el-menu-item index="/dataCenter/RoadLine">路线管理</el-menu-item>
-            <el-menu-item index="">路段管理</el-menu-item>
-            <el-menu-item index="">桥梁管理</el-menu-item>
-            <el-menu-item index="">隧道管理</el-menu-item>
-            <el-menu-item index="">涵洞管理</el-menu-item>
-            <el-menu-item index="">通道管理</el-menu-item>
-          </el-sub-menu>
+          <el-menu-item index="/dataCenter/RoadLine">路线管理</el-menu-item>
+          <el-menu-item index="">路段管理</el-menu-item>
+          <el-menu-item index="">桥梁管理</el-menu-item>
+          <el-menu-item index="">隧道管理</el-menu-item>
+          <el-menu-item index="">涵洞管理</el-menu-item>
+          <el-menu-item index="">通道管理</el-menu-item>
         </el-sub-menu>
-        <el-menu-item index="">
-          <i class="el-icon-menu" v-if="false"></i>
-          <span>养护业务管理</span>
-        </el-menu-item>
+        <el-sub-menu>
+          <template #title>
+            <i class="el-icon-location" v-if="false"></i>
+            <span>养护业务管理</span>
+          </template>
+          <el-menu-item index="">路段养护管理</el-menu-item>
+          <el-menu-item index="">桥梁养护管理</el-menu-item>
+        </el-sub-menu>
         <el-menu-item index="">
           <i class="el-icon-menu" v-if="false"></i>
           <span>系统管理</span>

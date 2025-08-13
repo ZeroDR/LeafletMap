@@ -26,9 +26,18 @@ const openDialog = ()=>{
 }
 
 // 文件选择
-const changeFile = (file,fileList)=>{
+const changeFile = (type,file,fileList)=>{
+  console.log(file)
   let formData = new FormData();
   formData.append('file',file.raw);
+  switch(type){
+    case 1:
+      formSource.value.bimPath = file.name;
+      break;
+    case 2:
+      formSource.value.wrjPath = file.name;
+      break;
+  }
 }
 
 const formSource = ref({})
@@ -47,17 +56,17 @@ defineExpose({openDialog})
       <el-form ref="formRef" :model="formSource" :rules="rules" label-width="80px">
         <el-row>
           <el-col :span="24">
-            <el-form-item label-width="160px" label="设施名称" prop="ssmc">
-              <el-input v-model="formSource.ssmc"></el-input>
+            <el-form-item label-width="160px" label="项目名称" prop="ssmc">
+              <el-input v-model="formSource.xmmc"></el-input>
             </el-form-item>
           </el-col>
         </el-row>
         <el-row>
           <el-col :span="24">
-            <el-form-item prop="dz" label-width="160px" label="地址">
+            <el-form-item prop="dz" label-width="160px" label="BIM模型">
               <div class="file-panel">
                 <div class="file-path">
-                  <el-input v-model="formSource.dz"></el-input>
+                  <el-input v-model="formSource.bimPath"></el-input>
                 </div>
                 <div>
                   <el-upload
@@ -67,7 +76,7 @@ defineExpose({openDialog})
                     :auto-upload="false"
                     :show-file-list="false"
                     :limit="1"
-                    :on-change="(file,fileList)=>changeFile(file,fileList)"
+                    :on-change="(file,fileList)=>changeFile(1,file,fileList)"
                     >
                     <el-button type="success">上传</el-button>
                   </el-upload>
@@ -78,10 +87,10 @@ defineExpose({openDialog})
         </el-row>
         <el-row>
           <el-col :span="24">
-            <el-form-item prop="dz" label-width="160px" label="地址">
+            <el-form-item prop="dz" label-width="160px" label="无人机模型">
               <div class="file-panel">
                 <div class="file-path">
-                  <el-input v-model="formSource.dz"></el-input>
+                  <el-input v-model="formSource.wrjPath"></el-input>
                 </div>
                 <div>
                   <el-upload
@@ -91,7 +100,7 @@ defineExpose({openDialog})
                     :auto-upload="false"
                     :show-file-list="false"
                     :limit="1"
-                    :on-change="(file,fileList)=>changeFile(file,fileList)"
+                    :on-change="(file,fileList)=>changeFile(2,file,fileList)"
                     >
                     <el-button type="success">上传</el-button>
                   </el-upload>

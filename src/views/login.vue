@@ -9,8 +9,8 @@ const loginRules = ref({
 
 const loginFormRef = ref()
 const loginForm = ref({
-  username:'',
-  password:''
+  username:'admin',
+  password:'888888'
 })
 const loading = ref(false)
 
@@ -22,7 +22,7 @@ const handleLogin=()=>{
       username: loginForm.value.username,
       password: loginForm.value.password,
     }
-    router.push({ name: 'RoadLine' });
+    router.push({ name: 'Home' });
   })
 }
 
@@ -34,7 +34,7 @@ onMounted(()=>{
   <div class="login">
     <el-form ref="loginFormRef" :model="loginForm" :rules="loginRules" label-position="left" label-width="0px" class="login-form">
       <h3 class="title">
-        ELADMIN 后台管理系统
+        桥路智慧诊养管理平台
       </h3>
       <el-form-item prop="username">
         <el-input v-model="loginForm.username" type="text" auto-complete="off" placeholder="账号">
@@ -69,7 +69,8 @@ onMounted(()=>{
   .title {
     margin: 0 auto 30px auto;
     text-align: center;
-    color: #707070;
+    color: #1b456e;
+    font-size: 24px;
   }
 
   .login-form {

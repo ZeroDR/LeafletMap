@@ -34,13 +34,18 @@ const listItemClickEvent = ()=>{
   router.push({ name: 'MapView' });
 }
 
-// 文件选择
-const changeFile = (file,fileList)=>{
-  let formData = new FormData();
-  formData.append('file',file.raw);
-}
 
 const init = ()=>{}
+
+const detailDialogRef = ref()
+
+// progress
+const proStatus = ref('none')
+const hasShowProgress = ref(false)
+const percentage = ref(0)
+const duration = ref(50)
+let proInterval = undefined;
+const hasShowItem = ref(false)
 
 const addEditDialogRef = ref();
 const addFn = ()=>{
@@ -48,9 +53,31 @@ const addFn = ()=>{
 }
 const handlEvent = ()=>{
   console.log(101001)
+  hasShowProgress.value = true;
+  proInterval = setInterval(()=>{
+    if(percentage.value >= 100){
+      hasShowProgress.value = false;
+      window.clearInterval(proInterval);
+      proInterval = undefined;
+      percentage.value = 0;
+      hasShowItem.value = true;
+    }
+    percentage.value += 1;
+  },100)
 }
 
-const detailDialogRef = ref()
+// 文件选择
+const uploadPhysicalFile = ref()
+const changeFile = (file,fileList)=>{
+  let formData = new FormData();
+  formData.append('file',file.raw);
+}
+
+const uploadOtherFile = ref()
+const otherFiletChangeFile = (file,fileList)=>{
+  handlEvent();
+}
+
 onMounted(()=>{
   console.log(detailDialogRef.value)
 })
@@ -60,11 +87,11 @@ onMounted(()=>{
 <template>
   <div class="data-view-content">
     <div class="view-content-title">
-      <span>公路资产信息</span>  >  <span>基本设施</span>   >  <span>路线管理</span>
+      <span>公路资产信息</span>   >  <span>路线管理</span>
     </div>
     <div class="search-panel">
       <el-form :inline="true" :model="searchForm" class="demo-form-inline">
-        <el-form-item label="名称：">
+        <el-form-item label="路线名称">
           <el-input v-model="searchForm.xm" placeholder="请输入" clearable/>
         </el-form-item>
       </el-form>
@@ -86,7 +113,41 @@ onMounted(()=>{
       </div>
     </div>
     <div class="list-panel">
-      <div class="list-item" @click="listItemClickEvent"></div>
+      <div class="list-item" v-if="hasShowItem">
+        <div class="item-img" @click="listItemClickEvent"></div>
+        <div class="item-attrs">
+          <div class="attrs">
+            <div class="label">名称</div>
+            <div class="value">XX道路</div>
+          </div>
+          <div class="attrs">
+            <div class="label">简介</div>
+            <div class="value">位于...</div>
+          </div>
+          <div class="attrs">
+            <div class="label">起点桩号</div>
+            <div class="value">K0+000</div>
+          </div>
+          <div class="attrs">
+            <div class="label">终点桩号</div>
+            <div class="value">K1+100</div>
+          </div>
+        </div>
+        <div class="item-btn">
+          <el-button type="primary">编辑</el-button>
+          <el-upload
+            action=""
+            ref="uploadOtherFile"
+            class="btn-upload"
+            :auto-upload="false"
+            :show-file-list="false"
+            :limit="1"
+            :on-change="(file,fileList)=>otherFiletChangeFile(file,fileList)"
+            >
+            <el-button type="primary">导入病害图片</el-button>
+          </el-upload>
+        </div>
+      </div>
     </div>
     <div class="page-panel">
       <el-pagination
@@ -99,6 +160,17 @@ onMounted(()=>{
         :total="total">
       </el-pagination>
     </div>
+    <div class="progress-panel" v-if="hasShowProgress">
+      <el-progress
+        :percentage="percentage"
+        :stroke-width="25"
+        :status="proStatus"
+        :text-inside="true"
+        striped
+        striped-flow
+        :duration="duration"
+      />
+    </div>
     <Detail ref="detailDialogRef" :source="{}"></Detail>
     <AddEdit ref="addEditDialogRef" @addEditHandle="handlEvent" :source="{}"></AddEdit>
   </div>
@@ -110,7 +182,7 @@ onMounted(()=>{
   width:100%;
   height:100%;
   background: #fff;
-  border: 1px solid rgba(84,217,255,0.2);
+  border: 1px solid rgba(84,217,255,0.9);
   .view-content-title{
     line-height:32px;
     padding:20px;
@@ -120,7 +192,7 @@ onMounted(()=>{
     color: #333;
     border-bottom:1px #42BFFB solid;
     span{
-      &:nth-child(3){
+      &:nth-child(2){
         color:#42BFFB;
       }
     }
@@ -137,10 +209,40 @@ onMounted(()=>{
     overflow-y: auto;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
-    grid-template-rows: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
     gap:30px;
     .list-item{
-      background:#333;
+      border: solid 1px #419df7;
+      padding: 5px;
+      border-radius: 5px;
+      box-shadow: 0 0 2px #419df7;
+      .item-img{
+        width: 100%;
+        height:calc(100% - 140px);
+        background-image: url("../images/item-bg.jpeg");
+        background-size: 100% 100%;
+        background-repeat: no-repeat;
+      }
+      .item-attrs{
+        .attrs{
+          display: flex;
+          justify-content: space-between;
+          width: 100%;
+          height: 24px;
+          margin:2px 0;
+          color:#333;
+          .label{
+            width:30%;
+          }
+          .value{
+            width:70%;
+          }
+        }
+      }
+      .item-btn{
+        display: flex;
+        justify-content: space-between;
+      }
     }
   }
   .page-panel{
@@ -148,6 +250,13 @@ onMounted(()=>{
     justify-content: center;
     padding:10px 20px;
     height:40px;
+  }
+  .progress-panel{
+    position: absolute;
+    top: 50%;
+    left: 10%;
+    z-index: 99;
+    width: 80%;
   }
 }
 </style>

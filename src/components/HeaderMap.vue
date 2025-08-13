@@ -29,7 +29,7 @@
         </el-menu>
       </div>
     </div>
-    <div class="center">Title</div>
+    <div class="center">桥路智慧诊养管理平台</div>
     <div class="right">
       <div class="right-menu">
         <el-menu 
